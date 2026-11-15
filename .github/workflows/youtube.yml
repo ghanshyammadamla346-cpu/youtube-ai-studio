@@ -1,0 +1,37 @@
+name: AI YouTube Automation
+
+on:
+  workflow_dispatch:
+
+jobs:
+  create-video:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+
+    steps:
+      - name: Download project
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: |
+          python -m pip install -r requirements.txt
+          sudo apt-get update
+          sudo apt-get install -y ffmpeg
+
+      - name: Generate AI YouTube video
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+        run: python main.py
+
+      - name: Save finished video
+        uses: actions/upload-artifact@v4
+        with:
+          name: youtube-video
+          path: output/
+          if-no-files-found: error
