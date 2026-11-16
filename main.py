@@ -24,7 +24,7 @@ WORK.mkdir(exist_ok=True)
 TOPIC = os.getenv('TOPIC', 'How AI agents could change small businesses').strip()
 TARGET = max(3, min(12, int(os.getenv('TARGET_MINUTES', '8'))))
 API_KEY = os.getenv('GEMINI_API_KEY', '')
-MODEL = os.getenv('GEMINI_MODEL', 'gemini-3.5-flash)
+MODEL = os.getenv('GEMINI_MODEL', 'gemini-3.5-flash')
 if not API_KEY:
     raise SystemExit('Missing GEMINI_API_KEY. Add it in Repository Settings > Secrets and variables > Actions.')
 
