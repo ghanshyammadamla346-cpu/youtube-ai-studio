@@ -29,7 +29,8 @@ jobs:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
            TOPIC: 'What if AI controlled every business for 24 hours? Tell an original suspenseful story about NOVA and coffee shop owner Alex.'
           TARGET_MINUTES: '10'
-          AI_IMAGES: 'false'
+    
+      AI_IMAGES: 'false'
         run: python main.py
 
       - name: Save finished video
